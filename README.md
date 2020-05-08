@@ -1,4 +1,4 @@
-# trail-by-fire
+# Trial by Fire
 Trial by fire is a text based adventure game ... for now.
 This project utilizes Java and JavaFX.
 
@@ -6,7 +6,7 @@ This project utilizes Java and JavaFX.
 Int this game you play as a young person who has lost thier family and must go on a journey to find them.
 along the way you will fight enemies and have to make decisions on which "paths" to take.
 
-# battle
+# Battle
 Battles mechanics here are modeled much like D&D mechanics.
 basically the player and the enemy roll a dye and who ever has the higher number wins that attack.
 Damage dealt is the difference between the each players rolls.
