@@ -1,19 +1,15 @@
 package com.company;
-import java.awt.*;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 //NOW FUNCTIONING AS MAIN CLASS
@@ -36,6 +32,10 @@ public class GUI extends Application {
 
     public void start(Stage primaryStage) throws Exception{
         //TODO:initial window: Style this screen
+
+        Button invert = new Button("™");
+        invert.setOnAction(e-> titleScreen.getStylesheets().add("dark-theme.css") );
+
         window = primaryStage;
         window.setTitle("Trial by Fire");
         //intro one
@@ -43,21 +43,19 @@ public class GUI extends Application {
         titleNameLabel.fontProperty().setValue(Font.font(50));
 
         Button startButton = new Button("Begin");
-        startButton.setStyle("-fx-background-color: #d2513f");
         startButton.setMinSize(100,35);
         startButton.setOnAction(e-> window.setScene(characterScreen));
 
         VBox titleLayout = new VBox(80);
         titleLayout.setAlignment(Pos.CENTER);
-        titleLayout.getChildren().addAll(titleNameLabel ,startButton);
+        titleLayout.getChildren().addAll(invert, titleNameLabel ,startButton);
 
         titleScreen = new Scene(titleLayout,900,600);
-        titleScreen.getStylesheets().add("trialByFire.css");
+        titleScreen.getStylesheets().add("light-theme.css");
 
         //TODO:Character builder: Style this screen
         makingName = new Label("What do they call you?");
         makingName.setFont(Font.font(40));
-        makingName.setTextFill(Color.valueOf("#d2513f"));
 
         playerNameInput = new TextField();
         playerNameInput.setMaxSize(600,10);
@@ -79,7 +77,7 @@ public class GUI extends Application {
         characterLayout.getChildren().addAll(makingName ,playerNameInput);
 
         characterScreen = new Scene(characterLayout,900,600);
-        characterScreen.getStylesheets().add("trialByFire.css");
+        characterScreen.getStylesheets().add("light-theme.css");
 
         //TODO:GAME SCREEN: Style this screen
         hpLabel = new Label("HP: " );
@@ -117,7 +115,7 @@ public class GUI extends Application {
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
         mainScreen = new Scene(fullLayout,900,600);
-        mainScreen.getStylesheets().add("trialByFire.css");
+        mainScreen.getStylesheets().add("light-theme.css");
 
         //TODO:BATTLE SCREEN: Style this screen
         battleHpLabel = new Label("HP: " );
@@ -171,7 +169,7 @@ public class GUI extends Application {
         battleLayout.getChildren().addAll(battleMainLayout,battleButtons);
 
         battleScreen = new Scene(battleLayout,900,600);
-        battleScreen.getStylesheets().add("trialByFire.css");
+        battleScreen.getStylesheets().add("light-theme.css");
 
         //TODO: DESICION SCREEN: Style this screen
         decisionHpLabel = new Label("HP: " );
@@ -202,7 +200,7 @@ public class GUI extends Application {
         decisionLayout.getChildren().addAll(decisionMainLayout,choiceButtons);
 
         decisionScreen = new Scene(decisionLayout,900,600);
-        decisionScreen.getStylesheets().add("trialByFire.css");
+        decisionScreen.getStylesheets().add("light-theme.css");
 
         window.setScene(titleScreen);
         window.show();
