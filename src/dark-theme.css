@@ -1,10 +1,10 @@
 //dark blue background
 .root{
-    -fx-background-color: #d2513f;
+    -fx-background-color: #01181e;
 }
 .label{
     -fx-font-size: 30;
-    -fx-text-fill: #01181e;
+    -fx-text-fill: #d2513f;
     -fx-wrap-text: "true";
     -fx-text-alignment: "CENTER";
 }
@@ -15,5 +15,5 @@
 .button{
      -fx-font-size: 20;
      -fx-text-fill: #01181e;
-     -fx-background-color: #01181e;
+     -fx-background-color: #d2513f;
 }

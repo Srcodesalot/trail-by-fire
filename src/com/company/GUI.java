@@ -23,7 +23,7 @@ public class GUI extends Application {
     Scene titleScreen, characterScreen, mainScreen, battleScreen, decisionScreen;
     Label hpLabel,decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel, makingName;
     Label mainTextArea, battleTextArea, decisionTextArea;
-    int  storyTracker = 0, enemyTracker = 0, choiceTracker = 0;
+    int  storyTracker = 0, enemyTracker = 0, choiceTracker = 0, theme = 1;
     Player player;
     Story story;
     TextField playerNameInput;
@@ -32,12 +32,12 @@ public class GUI extends Application {
 
     public void start(Stage primaryStage) throws Exception{
         //TODO:initial window: Style this screen
-
-        Button invert = new Button("™");
-        invert.setOnAction(e-> titleScreen.getStylesheets().add("dark-theme.css") );
-
         window = primaryStage;
         window.setTitle("Trial by Fire");
+
+        Button invert = new Button("™");
+        invert.setOnAction(e-> titleScreen.getStylesheets().add(themeSwap(theme)));
+
         //intro one
         Label titleNameLabel = new Label("Trial by Fire");
         titleNameLabel.fontProperty().setValue(Font.font(50));
@@ -51,7 +51,7 @@ public class GUI extends Application {
         titleLayout.getChildren().addAll(invert, titleNameLabel ,startButton);
 
         titleScreen = new Scene(titleLayout,900,600);
-        titleScreen.getStylesheets().add("light-theme.css");
+        titleScreen.getStylesheets().add("dark-theme.css");
 
         //TODO:Character builder: Style this screen
         makingName = new Label("What do they call you?");
@@ -77,7 +77,7 @@ public class GUI extends Application {
         characterLayout.getChildren().addAll(makingName ,playerNameInput);
 
         characterScreen = new Scene(characterLayout,900,600);
-        characterScreen.getStylesheets().add("light-theme.css");
+        characterScreen.getStylesheets().add("dark-theme.css");
 
         //TODO:GAME SCREEN: Style this screen
         hpLabel = new Label("HP: " );
@@ -115,7 +115,7 @@ public class GUI extends Application {
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
         mainScreen = new Scene(fullLayout,900,600);
-        mainScreen.getStylesheets().add("light-theme.css");
+        mainScreen.getStylesheets().add("dark-theme.css");
 
         //TODO:BATTLE SCREEN: Style this screen
         battleHpLabel = new Label("HP: " );
@@ -169,7 +169,7 @@ public class GUI extends Application {
         battleLayout.getChildren().addAll(battleMainLayout,battleButtons);
 
         battleScreen = new Scene(battleLayout,900,600);
-        battleScreen.getStylesheets().add("light-theme.css");
+        battleScreen.getStylesheets().add("dark-theme.css");
 
         //TODO: DESICION SCREEN: Style this screen
         decisionHpLabel = new Label("HP: " );
@@ -200,7 +200,7 @@ public class GUI extends Application {
         decisionLayout.getChildren().addAll(decisionMainLayout,choiceButtons);
 
         decisionScreen = new Scene(decisionLayout,900,600);
-        decisionScreen.getStylesheets().add("light-theme.css");
+        decisionScreen.getStylesheets().add("dark-theme.css");
 
         window.setScene(titleScreen);
         window.show();
@@ -307,6 +307,14 @@ public class GUI extends Application {
         decisionHpLabel.setText("HP: " + player.getCurHp());
     }
 
+    private String themeSwap(int x){
+        theme++;
+        titleScreen.getStylesheets().clear();
+        String [] themes = {"dark-theme.css", "light-theme.css"};
+        System.out.println("theme size: "+ themes.length+ "\tTheme Returned: "+ themes[x%themes.length] + "\tmodulo:" + x%themes.length );
+        return themes[x%themes.length];
+
+    }
     public static void main(String[] args) {
         Application.launch(args);
     }
