@@ -277,6 +277,7 @@ public class GUI extends Application {
         System.out.println(result);
         if(result.contains("LEVEL UP!")){
             player.levelUp();
+            updatePlayerPanel();
         }
         window.setScene(mainScreen);
     }
@@ -285,6 +286,8 @@ public class GUI extends Application {
     private void updatePlayerPanel(){
         hpLabel.setText("HP: " + player.getCurHp());
         battleHpLabel.setText("HP: " + player.getCurHp());
+        battleHpLabel.setText("HP: " + player.getCurHp());
+        decisionHpLabel.setText("HP: " + player.getCurHp());
     }
 
     public static void main(String[] args) {
