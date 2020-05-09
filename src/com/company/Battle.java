@@ -189,8 +189,8 @@ public class Battle {
         System.out.println(actions);
         player.setHp(playerHp);
         enemy.setHp(enemyHp);
-        if (playerHp < 0) return "FAIL";
-        else if (enemyHp < 0) return "PASS";
+        if (playerHp <= 0) return "FAIL";
+        else if (enemyHp <= 0) return "PASS";
         else return actions;
     }
 }
