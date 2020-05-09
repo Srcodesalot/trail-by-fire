@@ -97,7 +97,7 @@ public class GUI extends Application {
         mainTextArea = new Label();
         mainTextArea.isWrapText();
 
-        VBox mainLayout = new VBox(0);
+        VBox mainLayout = new VBox(150);
         mainLayout.setAlignment(Pos.CENTER);
         mainLayout.getChildren().addAll(playerPanel, mainTextArea);
 
@@ -125,10 +125,12 @@ public class GUI extends Application {
 
         battleTextArea = new Label();
         battleTextArea.isWrapText();
+        battleTextArea.prefWidth(50);
 
-        VBox battleMainLayout = new VBox(0);
+        VBox battleMainLayout = new VBox(150);
         battleMainLayout.setAlignment(Pos.CENTER);
         battleMainLayout.getChildren().addAll(battlePlayerPanel, battleTextArea);
+        battleMainLayout.minHeight(600);
 
         Button quick = new Button("Quick Attack");
         quick.setOnAction(e-> battleAction(1));
@@ -175,7 +177,7 @@ public class GUI extends Application {
         decisionTextArea.isWrapText();
         decisionTextArea.setText("What will you do?");
 
-        VBox decisionMainLayout = new VBox(0);
+        VBox decisionMainLayout = new VBox(150);
         decisionMainLayout.setAlignment(Pos.CENTER);
         decisionMainLayout.getChildren().addAll(decisionPlayerPanel, decisionTextArea);
 

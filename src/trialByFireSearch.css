@@ -10,9 +10,11 @@
 }
 .label-upTop{
     -fx-font-size: 20;
-    -fx-text-fill: #01181e;
+    -fx-text-fill: #3d7889;
+
 }
 .button{
      -fx-font-size: 20;
      -fx-text-fill: #01181e;
      -fx-background-color: #d2513f;
+}
