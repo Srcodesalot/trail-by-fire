@@ -41,20 +41,18 @@ public class GUI extends Application {
         //intro one
         Label titleNameLabel = new Label("Trial by Fire");
         titleNameLabel.fontProperty().setValue(Font.font(50));
-        titleNameLabel.setTextFill(Color.valueOf("#d2513f"));
 
         Button startButton = new Button("Begin");
         startButton.setStyle("-fx-background-color: #d2513f");
-        startButton.setTextFill(Color.valueOf("#01181e"));
         startButton.setMinSize(100,35);
         startButton.setOnAction(e-> window.setScene(characterScreen));
 
         VBox titleLayout = new VBox(80);
         titleLayout.setAlignment(Pos.CENTER);
         titleLayout.getChildren().addAll(titleNameLabel ,startButton);
-        titleLayout.setStyle("-fx-background-color: #01181e");
 
         titleScreen = new Scene(titleLayout,900,600);
+        titleScreen.getStylesheets().add("trialByFire.css");
 
         //TODO:Character builder: Style this screen
         makingName = new Label("What do they call you?");
@@ -79,9 +77,9 @@ public class GUI extends Application {
         VBox characterLayout = new VBox(20);
         characterLayout.setAlignment(Pos.CENTER);
         characterLayout.getChildren().addAll(makingName ,playerNameInput);
-        characterLayout.setStyle("-fx-background-color: #01181e");
 
         characterScreen = new Scene(characterLayout,900,600);
+        characterScreen.getStylesheets().add("trialByFire.css");
 
         //TODO:GAME SCREEN: Style this screen
         hpLabel = new Label("HP: " );
@@ -114,7 +112,7 @@ public class GUI extends Application {
         continueButton.setOnAction(e-> progress());
         continueButton.setAlignment(Pos.CENTER_RIGHT);
 
-        VBox fullLayout = new VBox(120);
+        VBox fullLayout = new VBox(110);
         fullLayout.setAlignment(Pos.TOP_CENTER);
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
@@ -143,15 +141,19 @@ public class GUI extends Application {
 
         Button quick = new Button("Quick Attack");
         quick.setOnAction(e-> battleAction(1));
+        quick.setMinSize(200, 20);
 
         Button strong = new Button("Heavy Attack");
         strong.setOnAction(e-> battleAction(2));
+        strong.setMinSize(200, 20);
 
         Button dodge = new Button("Dodge");
         dodge.setOnAction(e-> battleAction(3));
+        dodge.setMinSize(200, 20);
 
         Button block = new Button("Block");
         block.setOnAction(e-> battleAction(4));
+        block.setMinSize(200, 20);
 
         HBox attackButtons = new HBox(10);
         attackButtons.setAlignment(Pos.CENTER);
@@ -164,12 +166,12 @@ public class GUI extends Application {
         VBox battleButtons = new VBox(10);
         battleButtons.getChildren().addAll(attackButtons,defenseButtons);
 
-        VBox battleLayout = new VBox(120);
+        VBox battleLayout = new VBox(110);
         battleLayout.setAlignment(Pos.TOP_CENTER);
         battleLayout.getChildren().addAll(battleMainLayout,battleButtons);
 
         battleScreen = new Scene(battleLayout,900,600);
-        battleScreen.getStylesheets().add("trialByFireBattle.css");
+        battleScreen.getStylesheets().add("trialByFire.css");
 
         //TODO: DESICION SCREEN: Style this screen
         decisionHpLabel = new Label("HP: " );
@@ -195,12 +197,12 @@ public class GUI extends Application {
         choiceButtons.getChildren().addAll();
         choiceButtons.setAlignment(Pos.CENTER);
 
-        VBox decisionLayout = new VBox(120);
+        VBox decisionLayout = new VBox(110);
         decisionLayout.setAlignment(Pos.TOP_CENTER);
         decisionLayout.getChildren().addAll(decisionMainLayout,choiceButtons);
 
         decisionScreen = new Scene(decisionLayout,900,600);
-        decisionScreen.getStylesheets().add("trialByFireSearch.css");
+        decisionScreen.getStylesheets().add("trialByFire.css");
 
         window.setScene(titleScreen);
         window.show();
