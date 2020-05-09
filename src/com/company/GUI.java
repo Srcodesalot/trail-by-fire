@@ -96,10 +96,19 @@ public class GUI extends Application {
 
         mainTextArea = new Label();
         mainTextArea.isWrapText();
+        mainTextArea.setMinWidth(50);
+        mainTextArea.setMinHeight(50);
 
-        VBox mainLayout = new VBox(150);
+        HBox padding = new HBox(50);
+        padding.setAlignment(Pos.CENTER);
+        Label paddingleft = new Label("");
+        Label paddingRight = new Label("");
+        padding.getChildren().addAll(paddingleft, mainTextArea, paddingRight);
+
+
+        VBox mainLayout = new VBox(140);
         mainLayout.setAlignment(Pos.CENTER);
-        mainLayout.getChildren().addAll(playerPanel, mainTextArea);
+        mainLayout.getChildren().addAll(playerPanel, padding);
 
         Button continueButton = new Button("Continue");
         continueButton.setOnAction(e-> progress());
@@ -127,7 +136,7 @@ public class GUI extends Application {
         battleTextArea.isWrapText();
         battleTextArea.prefWidth(50);
 
-        VBox battleMainLayout = new VBox(150);
+        VBox battleMainLayout = new VBox(140);
         battleMainLayout.setAlignment(Pos.CENTER);
         battleMainLayout.getChildren().addAll(battlePlayerPanel, battleTextArea);
         battleMainLayout.minHeight(600);
@@ -177,7 +186,7 @@ public class GUI extends Application {
         decisionTextArea.isWrapText();
         decisionTextArea.setText("What will you do?");
 
-        VBox decisionMainLayout = new VBox(150);
+        VBox decisionMainLayout = new VBox(140);
         decisionMainLayout.setAlignment(Pos.CENTER);
         decisionMainLayout.getChildren().addAll(decisionPlayerPanel, decisionTextArea);
 
