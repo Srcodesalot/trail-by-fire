@@ -1,0 +1,19 @@
+//bright theme
+.root{
+    -fx-background-color: #CC00FF;
+}
+.label{
+    -fx-font-size: 35;
+    -fx-text-fill: #66ff00;
+    -fx-wrap-text: "true";
+    -fx-text-alignment: "CENTER";
+}
+.label-upTop{
+    -fx-font-size: 20;
+    -fx-text-fill: #CCFF00;
+}
+.button{
+     -fx-font-size: 20;
+     -fx-text-fill: #CC00FF;
+     -fx-background-color: #00ffcc;
+}

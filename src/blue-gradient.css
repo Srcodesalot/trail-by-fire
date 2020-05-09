@@ -1,0 +1,19 @@
+//gradient blue background
+.root{
+    -fx-background-color: linear-gradient(#01181e, #003C4B);
+}
+.label{
+    -fx-font-size: 35;
+    -fx-text-fill: #d2513f;
+    -fx-wrap-text: "true";
+    -fx-text-alignment: "CENTER";
+}
+.label-upTop{
+    -fx-font-size: 20;
+    -fx-text-fill: #eaf2f8;
+}
+.button{
+     -fx-font-size: 20;
+     -fx-text-fill: #a9cce3;
+     -fx-background-color: #641e16;
+}
