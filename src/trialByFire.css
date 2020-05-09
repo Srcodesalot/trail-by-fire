@@ -1,0 +1,21 @@
+//dark blue background
+.root{
+/* dope ass gradient
+    -fx-background-color: linear-gradient(#01181e, #ab4642); */
+    -fx-background-color: #01181e;
+}
+.label{
+    -fx-font-size: 26;
+    -fx-text-fill: #d2513f;
+    -fx-wrap-text: "true";
+    -fx-text-alignment: "CENTER";
+}
+.label-upTop{
+    -fx-font-size: 20;
+    -fx-text-fill: #3d7889;
+}
+.button{
+     -fx-font-size: 20;
+     -fx-text-fill: #01181e;
+     -fx-background-color: #d2513f;
+}
