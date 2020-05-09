@@ -26,7 +26,7 @@ public class GUI extends Application {
     Stage window;
     Scene titleScreen, characterScreen, mainScreen, battleScreen, decisionScreen;
     Label hpLabel,decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel, makingName;
-    TextArea mainTextArea, battleTextArea, decisionTextArea;
+    Label mainTextArea, battleTextArea, decisionTextArea;
     int  storyTracker = 0, enemyTracker = 0, choiceTracker = 0;
     Player player;
     Story story;
@@ -85,14 +85,16 @@ public class GUI extends Application {
 
         //TODO:GAME SCREEN: Style this screen
         hpLabel = new Label("HP: " );
+        hpLabel.getStyleClass().add("label-upTop");
 
         nameLabel = new Label("Name: ");
+        nameLabel.getStyleClass().add("label-upTop");
 
         HBox playerPanel = new HBox(characterScreen.getWidth()/2);
         playerPanel.setAlignment(Pos.CENTER);
         playerPanel.getChildren().addAll(hpLabel, nameLabel);
 
-        mainTextArea = new TextArea();
+        mainTextArea = new Label();
         mainTextArea.isWrapText();
 
         VBox mainLayout = new VBox(0);
@@ -108,17 +110,20 @@ public class GUI extends Application {
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
         mainScreen = new Scene(fullLayout,900,600);
+        mainScreen.getStylesheets().add("trialByFire.css");
 
         //TODO:BATTLE SCREEN: Style this screen
         battleHpLabel = new Label("HP: " );
+        battleHpLabel.getStyleClass().add("label-upTop");
 
         battleNameLabel = new Label("Name: ");
+        battleNameLabel.getStyleClass().add("label-upTop");
 
         HBox battlePlayerPanel = new HBox(characterScreen.getWidth()/2);
         battlePlayerPanel.setAlignment(Pos.CENTER);
         battlePlayerPanel.getChildren().addAll(battleHpLabel, battleNameLabel);
 
-        battleTextArea = new TextArea();
+        battleTextArea = new Label();
         battleTextArea.isWrapText();
 
         VBox battleMainLayout = new VBox(0);
@@ -153,20 +158,20 @@ public class GUI extends Application {
         battleLayout.getChildren().addAll(battleMainLayout,battleButtons);
 
         battleScreen = new Scene(battleLayout,900,600);
-
-        window.setScene(titleScreen);
-        window.show();
+        battleScreen.getStylesheets().add("trialByFireBattle.css");
 
         //TODO: DESICION SCREEN: Style this screen
         decisionHpLabel = new Label("HP: " );
+        decisionHpLabel.getStyleClass().add("label-upTop");
 
         decisionNameLabel = new Label("Name: ");
+        decisionNameLabel.getStyleClass().add("label-upTop");
 
         HBox decisionPlayerPanel = new HBox(characterScreen.getWidth()/2);
         decisionPlayerPanel.setAlignment(Pos.CENTER);
         decisionPlayerPanel.getChildren().addAll(decisionHpLabel, decisionNameLabel);
 
-        decisionTextArea = new TextArea();
+        decisionTextArea = new Label();
         decisionTextArea.isWrapText();
         decisionTextArea.setText("What will you do?");
 
@@ -184,6 +189,7 @@ public class GUI extends Application {
         decisionLayout.getChildren().addAll(decisionMainLayout,choiceButtons);
 
         decisionScreen = new Scene(decisionLayout,900,600);
+        decisionScreen.getStylesheets().add("trialByFireSearch.css");
 
         window.setScene(titleScreen);
         window.show();
