@@ -8,11 +8,9 @@ import java.util.Scanner;
 public class Battle {
 
     HashMap<Integer, String> choices = new HashMap();
-    private boolean isFinished;
     private Player player, enemy;
 
     public Battle(Player p1, Player en) {
-        isFinished = false;
         player = p1;
         enemy = en;
         choices.put(1, "Quick Attack");
@@ -21,14 +19,14 @@ public class Battle {
         choices.put(4, "Block");
     }
 
-    //this battle function will be run evertytime there is a battle
+    //this battle function will be run every time there is a battle
     public String battle(int x) {
         //1 = attack 2 = quick attack 3= dodge 4 = attack
         //using ints cause they will be less tedious than text
         String actions = "";
         int playerChoice = x;
         int enemyChoice = enemy.choose();
-        int playerRoll = 0, enemyRoll = 0;
+        int playerRoll, enemyRoll;
         int playerHp = player.getCurHp();
         int enemyHp = enemy.getCurHp();
 
@@ -53,7 +51,6 @@ public class Battle {
                 }
             }
             //enemy strong attack
-
             else if (enemyChoice == 2) {
                 enemyRoll = enemy.strongAttack();
                 enemyHp -= playerRoll;
@@ -91,7 +88,6 @@ public class Battle {
                 enemyHp -= playerRoll;
                 actions = player.getName() + " Dealt: " + playerRoll + " damage\t" + enemy.getName() + " Dealt: " + enemyRoll + " damage";
             }
-
             //enemy strong attack
             else if (enemyChoice == 2) {
                 enemyRoll = enemy.strongAttack();
@@ -107,7 +103,6 @@ public class Battle {
                     actions = player.getName() + " Dealt: " + playerRoll + " damage\t" + enemy.getName() + " Dealt: " + enemyRoll + " damage";
                 }
             }
-
             //enemy dodge
             else if (enemyChoice == 3) {
                 actions = "The enemy dodged evading your strong attack";
@@ -126,7 +121,6 @@ public class Battle {
         //player dodge
         if (playerChoice == 3) {
             playerRoll = player.dodge();
-
             //enemy quick attack
             if (enemyChoice == 1) {
                 enemyRoll = enemy.quickAttack();
@@ -136,12 +130,10 @@ public class Battle {
                     actions = enemy.getName() + " Dealt: " + damage + " damage";
                 } else actions = "you were really on your toes and even evaded a quick attack!";
             }
-
             //enemy strong attack
             else if (enemyChoice == 2) {
                 actions = "you dodged evading the enemy's strong attack!";
             }
-
             //enemy dodge
             else if (enemyChoice == 3) {
                 actions = "You both dodge mimicking each others moves.";
@@ -155,12 +147,10 @@ public class Battle {
         //player block
         if (playerChoice == 4) {
             playerRoll = player.block();
-
             //enemy quick attack
             if (enemyChoice == 1) {
                 actions = "you block brushing off the weak attack!";
             }
-
             //enemy strong attack
             else if (enemyChoice == 2) {
                 enemyRoll = enemy.strongAttack();
@@ -170,7 +160,6 @@ public class Battle {
                     actions = enemy.getName() + "Dealt: " + damage + " damage";
                 }else actions = "Your Block Was a SUCCESS!!! blocking all damage!";
             }
-
             //enemy dodge
             else if (enemyChoice == 3) {
                 actions = "the enemy moves anticipating the your attack Prompting you to hold back.";

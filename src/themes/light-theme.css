@@ -1,0 +1,34 @@
+//light red background
+.root{
+   -fx-background-color: #a74332;
+}
+.label{
+   -fx-font-size: 30;
+   -fx-text-fill: #3d7889;
+   -fx-wrap-text: "true";
+   -fx-text-alignment: "CENTER";
+}
+.label-upTop{
+   -fx-font-size: 23;
+   -fx-text-fill: #3d7889;
+}
+.button{
+    -fx-font-size: 20;
+    -fx-text-fill: #a74332;
+    -fx-background-color: #3d7889;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #3d7889;
+}
+.theme-manager{
+    -fx-text-fill: #3d7889;
+    -fx-background-color: rgba(255, 255, 255, .0);
+}
+.hyper-link{
+   -fx-font-size: 20;
+   -fx-text-fill: #3d7889;
+}

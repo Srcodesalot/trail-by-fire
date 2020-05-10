@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Random;
 
 //**
@@ -12,35 +13,31 @@ public class Player {
     private int level, speed, strength, maxHp, curHp, hitRange;
     private String name;
 
-    public Player(String nme, int lev){
+    public Player(String nme, int lev) {
         name = nme;
         level = lev;
-        maxHp = lev*10;
-        curHp  = maxHp;
-        speed =1;
-        strength =1;
+        maxHp = lev * 10;
+        curHp = maxHp;
+        speed = 1;
+        strength = 1;
         hitRange = 5;
     }
 
-    //retreval
-    public String getName(){
+    //retrieval
+    public String getName() {
         return name;
     }
 
-    public int getCurHp(){
+    public int getCurHp() {
         return curHp;
     }
 
-    public int getMaxHp(){
-        return maxHp;
-    }
-
-    public int getSpeed(){
+    public int getSpeed() {
         return speed;
     }
 
     //MODIFIERS
-    public void levelUp(){
+    public void levelUp() {
         maxHp += 10;
         curHp = maxHp;
         level += 1;
@@ -48,50 +45,54 @@ public class Player {
         strength += 1;
         hitRange = 1;
     }
-     public  void setSpeed(int spd){
+
+    public void setSpeed(int spd) {
         speed = spd;
-     }
-     public  void setStrength(int str){
-         strength = str;
-     }
-     public void setHp(int hp){
-         curHp = hp;
-     }
-     public void Restore(){
-         curHp = maxHp;
-     }
+    }
+
+    public void setStrength(int str) {
+        strength = str;
+    }
+
+    public void setHp(int hp) {
+        curHp = hp;
+    }
+
+    public void Restore() {
+        curHp = maxHp;
+    }
 
     //ACTIONS
     //fast attack no modifiers
-    public int quickAttack(){
+    public int quickAttack() {
         Random damage = new Random();
         int damageDealt = damage.nextInt(hitRange) + speed;
         return damageDealt;
     }
 
     //slower attack inclues strength modifier
-    public int strongAttack(){
+    public int strongAttack() {
         Random damage = new Random();
         int damageDealt = damage.nextInt(hitRange) + strength;
         return damageDealt;
     }
 
     // Block is a roll plus strength
-    public int block(){
+    public int block() {
         Random damage = new Random();
         int damageDealt = damage.nextInt(hitRange) + strength;
         return damageDealt;
     }
 
     //dodge is a roll plus speed
-    public int dodge(){
+    public int dodge() {
         Random damage = new Random();
         int damageDealt = damage.nextInt(hitRange) + speed;
         return damageDealt;
     }
 
     //npc gen
-    public int choose(){
+    public int choose() {
         Random gen = new Random();
         int choice = gen.nextInt(4);
         return choice + 1;

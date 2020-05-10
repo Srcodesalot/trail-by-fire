@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Hyperlink;
+import java.util.Timer;
+import java.util.*;
 
 //NOW FUNCTIONING AS MAIN CLASS
 //Cool color scheme we may want https://www.fabmood.com/inspiration/emerald-teal-and-terracotta-color-scheme/
@@ -21,74 +24,96 @@ public class GUI extends Application {
 
     Stage window;
     Scene titleScreen, characterScreen, mainScreen, battleScreen, decisionScreen;
-    Label hpLabel,decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel, makingName;
+    Label hpLabel, decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel, makingName;
     Label mainTextArea, battleTextArea, decisionTextArea;
-    int  storyTracker = 0, enemyTracker = 0, choiceTracker = 0;
+    int storyTracker = 0, enemyTracker = 0, choiceTracker = 0, themeIdx = 1;
     Player player;
     Story story;
     TextField playerNameInput;
     Battle curBattle;
     HBox choiceButtons;
+    VBox mainLayout, fullLayout;
+    Button continueButton;
 
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+        String defaultTheme = "themes/dark-theme.css";
+
         //TODO:initial window: Style this screen
-
-        Button invert = new Button("™");
-        invert.setOnAction(e-> titleScreen.getStylesheets().add("dark-theme.css") );
-
         window = primaryStage;
         window.setTitle("Trial by Fire");
+
+        Button themeSwitcher = new Button("™");
+        themeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        themeSwitcher.getStyleClass().add("theme-manager");
+
+        Label spacer = new Label(" ");
+
+        HBox themeButton = new HBox(800);
+        themeButton.getChildren().addAll(spacer,themeSwitcher);
+
         //intro one
         Label titleNameLabel = new Label("Trial by Fire");
-        titleNameLabel.fontProperty().setValue(Font.font(50));
+        titleNameLabel.fontProperty().setValue(Font.font(100));
 
         Button startButton = new Button("Begin");
-        startButton.setMinSize(100,35);
-        startButton.setOnAction(e-> window.setScene(characterScreen));
+        startButton.setMinSize(100, 35);
+        startButton.setOnAction(e -> window.setScene(characterScreen));
 
-        VBox titleLayout = new VBox(80);
-        titleLayout.setAlignment(Pos.CENTER);
-        titleLayout.getChildren().addAll(invert, titleNameLabel ,startButton);
+        VBox mainComponent  = new VBox(80);
+        mainComponent.setAlignment(Pos.CENTER);
+        mainComponent.getChildren().addAll(titleNameLabel, startButton);
 
-        titleScreen = new Scene(titleLayout,900,600);
-        titleScreen.getStylesheets().add("light-theme.css");
+        VBox titleLayout = new VBox(220);
+        titleLayout.setAlignment(Pos.TOP_CENTER);
+        titleLayout.getChildren().addAll(themeButton, mainComponent);
+
+        titleScreen = new Scene(titleLayout, 900, 600);
+        titleScreen.getStylesheets().add(defaultTheme);
 
         //TODO:Character builder: Style this screen
         makingName = new Label("What do they call you?");
         makingName.setFont(Font.font(40));
 
         playerNameInput = new TextField();
-        playerNameInput.setMaxSize(600,10);
-        playerNameInput.setStyle("-fx-background-color: #01181e; -fx-text-inner-color: #3d7889;");
+        playerNameInput.setMaxSize(600, 10);
+        playerNameInput.getStyleClass().add("text-field");
         playerNameInput.setFont(Font.font(25));
         playerNameInput.setAlignment(Pos.CENTER);
-        playerNameInput.setOnKeyPressed(e->{
-            if(e.getCode() == KeyCode.ENTER){
-                String name = playerNameInput.getText();
-                initPlayer(name);
-                progress();
-                window.setScene(mainScreen);
-            }
+        playerNameInput.setOnKeyPressed(e -> {
+                    if (e.getCode() == KeyCode.ENTER) {
+                        String name = playerNameInput.getText();
+                        initPlayer(name);
+                        progress();
+                        window.setScene(mainScreen);
+                    }
                 }
         );
 
         VBox characterLayout = new VBox(20);
         characterLayout.setAlignment(Pos.CENTER);
-        characterLayout.getChildren().addAll(makingName ,playerNameInput);
+        characterLayout.getChildren().addAll(makingName, playerNameInput);
 
-        characterScreen = new Scene(characterLayout,900,600);
-        characterScreen.getStylesheets().add("light-theme.css");
+        characterScreen = new Scene(characterLayout, 900, 600);
+        characterScreen.getStylesheets().add(defaultTheme);
 
         //TODO:GAME SCREEN: Style this screen
-        hpLabel = new Label("HP: " );
+        hpLabel = new Label("HP: ");
         hpLabel.getStyleClass().add("label-upTop");
 
         nameLabel = new Label("Name: ");
         nameLabel.getStyleClass().add("label-upTop");
 
-        HBox playerPanel = new HBox(characterScreen.getWidth()/2);
-        playerPanel.setAlignment(Pos.CENTER);
-        playerPanel.getChildren().addAll(hpLabel, nameLabel);
+        HBox hpName = new HBox(characterScreen.getWidth() / 2);
+        hpName.setAlignment(Pos.CENTER);
+        hpName.getChildren().addAll(hpLabel, nameLabel);
+
+        Button gThemeSwitcher = new Button("™");
+        gThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        gThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox playerPanel = new HBox(55);
+        playerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        playerPanel.getChildren().addAll(hpName, gThemeSwitcher);
 
         mainTextArea = new Label();
         mainTextArea.isWrapText();
@@ -101,32 +126,39 @@ public class GUI extends Application {
         Label paddingRight = new Label("");
         padding.getChildren().addAll(paddingleft, mainTextArea, paddingRight);
 
-
-        VBox mainLayout = new VBox(140);
+        mainLayout = new VBox(140);
         mainLayout.setAlignment(Pos.CENTER);
         mainLayout.getChildren().addAll(playerPanel, padding);
 
-        Button continueButton = new Button("Continue");
-        continueButton.setOnAction(e-> progress());
+        continueButton = new Button("Continue");
+        continueButton.setOnAction(e -> progress());
         continueButton.setAlignment(Pos.CENTER_RIGHT);
 
-        VBox fullLayout = new VBox(110);
+        fullLayout = new VBox(110);
         fullLayout.setAlignment(Pos.TOP_CENTER);
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
-        mainScreen = new Scene(fullLayout,900,600);
-        mainScreen.getStylesheets().add("light-theme.css");
+        mainScreen = new Scene(fullLayout, 900, 600);
+        mainScreen.getStylesheets().add(defaultTheme);
 
         //TODO:BATTLE SCREEN: Style this screen
-        battleHpLabel = new Label("HP: " );
+        battleHpLabel = new Label("HP: ");
         battleHpLabel.getStyleClass().add("label-upTop");
 
         battleNameLabel = new Label("Name: ");
         battleNameLabel.getStyleClass().add("label-upTop");
 
-        HBox battlePlayerPanel = new HBox(characterScreen.getWidth()/2);
-        battlePlayerPanel.setAlignment(Pos.CENTER);
-        battlePlayerPanel.getChildren().addAll(battleHpLabel, battleNameLabel);
+        HBox bHpName = new HBox(characterScreen.getWidth() / 2);
+        bHpName.setAlignment(Pos.CENTER);
+        bHpName.getChildren().addAll(battleHpLabel, battleNameLabel);
+
+        Button bThemeSwitcher = new Button("™");
+        bThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        bThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox battlePlayerPanel = new HBox(55);
+        battlePlayerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        battlePlayerPanel.getChildren().addAll(bHpName, bThemeSwitcher);
 
         battleTextArea = new Label();
         battleTextArea.isWrapText();
@@ -138,49 +170,57 @@ public class GUI extends Application {
         battleMainLayout.minHeight(600);
 
         Button quick = new Button("Quick Attack");
-        quick.setOnAction(e-> battleAction(1));
+        quick.setOnAction(e -> battleAction(1));
         quick.setMinSize(200, 20);
 
         Button strong = new Button("Heavy Attack");
-        strong.setOnAction(e-> battleAction(2));
+        strong.setOnAction(e -> battleAction(2));
         strong.setMinSize(200, 20);
 
         Button dodge = new Button("Dodge");
-        dodge.setOnAction(e-> battleAction(3));
+        dodge.setOnAction(e -> battleAction(3));
         dodge.setMinSize(200, 20);
 
         Button block = new Button("Block");
-        block.setOnAction(e-> battleAction(4));
+        block.setOnAction(e -> battleAction(4));
         block.setMinSize(200, 20);
 
         HBox attackButtons = new HBox(10);
         attackButtons.setAlignment(Pos.CENTER);
-        attackButtons.getChildren().addAll(quick,strong);
+        attackButtons.getChildren().addAll(quick, strong);
 
         HBox defenseButtons = new HBox(10);
         defenseButtons.setAlignment(Pos.CENTER);
-        defenseButtons.getChildren().addAll(dodge,block);
+        defenseButtons.getChildren().addAll(dodge, block);
 
         VBox battleButtons = new VBox(10);
-        battleButtons.getChildren().addAll(attackButtons,defenseButtons);
+        battleButtons.getChildren().addAll(attackButtons, defenseButtons);
 
         VBox battleLayout = new VBox(110);
         battleLayout.setAlignment(Pos.TOP_CENTER);
-        battleLayout.getChildren().addAll(battleMainLayout,battleButtons);
+        battleLayout.getChildren().addAll(battleMainLayout, battleButtons);
 
-        battleScreen = new Scene(battleLayout,900,600);
-        battleScreen.getStylesheets().add("light-theme.css");
+        battleScreen = new Scene(battleLayout, 900, 600);
+        battleScreen.getStylesheets().add(defaultTheme);
 
         //TODO: DESICION SCREEN: Style this screen
-        decisionHpLabel = new Label("HP: " );
+        decisionHpLabel = new Label("HP: ");
         decisionHpLabel.getStyleClass().add("label-upTop");
 
         decisionNameLabel = new Label("Name: ");
         decisionNameLabel.getStyleClass().add("label-upTop");
 
-        HBox decisionPlayerPanel = new HBox(characterScreen.getWidth()/2);
-        decisionPlayerPanel.setAlignment(Pos.CENTER);
-        decisionPlayerPanel.getChildren().addAll(decisionHpLabel, decisionNameLabel);
+        HBox dHpName = new HBox(characterScreen.getWidth() / 2);
+        dHpName.setAlignment(Pos.CENTER);
+        dHpName.getChildren().addAll(decisionHpLabel, decisionNameLabel);
+
+        Button dThemeSwitcher = new Button("™");
+        dThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        dThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox decisionPlayerPanel = new HBox(55);
+        decisionPlayerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        decisionPlayerPanel.getChildren().addAll(dHpName, dThemeSwitcher);
 
         decisionTextArea = new Label();
         decisionTextArea.isWrapText();
@@ -197,10 +237,10 @@ public class GUI extends Application {
 
         VBox decisionLayout = new VBox(110);
         decisionLayout.setAlignment(Pos.TOP_CENTER);
-        decisionLayout.getChildren().addAll(decisionMainLayout,choiceButtons);
+        decisionLayout.getChildren().addAll(decisionMainLayout, choiceButtons);
 
-        decisionScreen = new Scene(decisionLayout,900,600);
-        decisionScreen.getStylesheets().add("light-theme.css");
+        decisionScreen = new Scene(decisionLayout, 900, 600);
+        decisionScreen.getStylesheets().add(defaultTheme);
 
         window.setScene(titleScreen);
         window.show();
@@ -208,7 +248,7 @@ public class GUI extends Application {
     }
 
     //initialization meathods
-    private void initPlayer(String name){
+    private void initPlayer(String name) {
         player = new Player(name, 1);
         nameLabel.setText("Name: " + name);
         hpLabel.setText("HP: " + player.getCurHp());
@@ -220,25 +260,25 @@ public class GUI extends Application {
         story = new Story(player);
     }
 
-    private void initBattle(){
+    private void initBattle() {
         Player enemy = story.getEnemy(enemyTracker);
         enemy.Restore();
         Battle battle = new Battle(player, enemy);
         curBattle = battle;
     }
 
-    private void initDecision(){
+    private void initDecision() {
         choiceButtons.getChildren().clear();
-        String choice  = "choice" + choiceTracker;
+        String choice = "choice" + choiceTracker;
         Choices thisChoice = new Choices();
-        String [] labels = thisChoice.getChoices(choice);
+        String[] labels = thisChoice.getChoices(choice);
         int x = 0;
 
-        for (String label: labels) {
+        for (String label : labels) {
             System.out.println(label);
             final int picked = x;
             Button button = new Button(label);
-            button.setOnAction(e-> choose(picked));
+            button.setOnAction(e -> choose(picked));
 
             choiceButtons.getChildren().add(button);
 
@@ -246,7 +286,7 @@ public class GUI extends Application {
         }
     }
 
-    private void progress(){
+    private void progress() {
         String storyLine = story.getStory(storyTracker);
         System.out.println(storyLine);
         storyTracker++;
@@ -255,21 +295,35 @@ public class GUI extends Application {
             battleTextArea.setText("Quick, the battle has begun, Whats your move?! ");
             window.setScene(battleScreen);
         }
-        if (storyLine.contains("DECISION TREE")) {
+        else if (storyLine.contains("DECISION TREE")) {
             initDecision();
             window.setScene(decisionScreen);
             mainTextArea.setText("SEARCH!!!!");
         }
-        if(storyLine.contains("LEVEL UP!")){
+        else if (storyLine.contains("LEVEL UP!")) {
             player.levelUp();
             player.Restore();
             updatePlayerPanel();
         }
-        mainTextArea.setText(storyLine);
+        else if (storyLine.contains("END")) {
+            //rebuild the main screen
+            continueButton.setVisible(false);
+            mainTextArea.setText("Thats all for now! Thank you for playing and there will be more updates to come!\n");
+
+            Hyperlink gitLink = new Hyperlink("Github link: https://github.com/Srcodesalot/trail-by-fire");
+            gitLink.getStyleClass().add("hyper-link");
+            gitLink.setOnAction(e-> getHostServices().showDocument("https://github.com/Srcodesalot/trail-by-fire"));
+
+            mainLayout.getChildren().add(gitLink);
+
+            fullLayout.setSpacing(90);
+        }else{
+            mainTextArea.setText(storyLine);
+        }
     }
 
     //User Actions
-    private void battleAction(int x){
+    private void battleAction(int x) {
         String result = curBattle.battle(x);
         if (result == "PASS") {
             mainTextArea.setText("Victory!");
@@ -287,12 +341,12 @@ public class GUI extends Application {
         updatePlayerPanel();
     }
 
-    private void choose(int x){
+    private void choose(int x) {
         Choices thisChoice = new Choices();
         String result = thisChoice.Results(choiceTracker, x);
         mainTextArea.setText(result);
         System.out.println(result);
-        if(result.contains("LEVEL UP!")){
+        if (result.contains("LEVEL UP!")) {
             player.levelUp();
             updatePlayerPanel();
         }
@@ -300,11 +354,63 @@ public class GUI extends Application {
     }
 
     //Mutators
-    private void updatePlayerPanel(){
+    private void updatePlayerPanel() {
         hpLabel.setText("HP: " + player.getCurHp());
         battleHpLabel.setText("HP: " + player.getCurHp());
         battleHpLabel.setText("HP: " + player.getCurHp());
         decisionHpLabel.setText("HP: " + player.getCurHp());
+    }
+
+    private void themeSwap(int x) {
+        themeIdx++;
+        String[] themes = {
+                "dark-theme.css", "light-theme.css", "black-white-gradient.css",
+                "blue-gradient.css", "rainbow-theme.css", "red-gradient.css",
+                "super-bright-theme.css"
+        };
+
+        String theme = "themes/" + themes[x % themes.length];
+
+        //clear
+        titleScreen.getStylesheets().clear();
+        characterScreen.getStylesheets().clear();
+        mainScreen.getStylesheets().clear();
+        battleScreen.getStylesheets().clear();
+        decisionScreen.getStylesheets().clear();
+
+        //set
+        titleScreen.getStylesheets().add(theme);
+        characterScreen.getStylesheets().add(theme);
+        mainScreen.getStylesheets().add(theme);
+        battleScreen.getStylesheets().add(theme);
+        decisionScreen.getStylesheets().add(theme);
+
+        if(x == themes.length*4){
+            rapidTheme();
+        }
+    }
+
+    public void rapidTheme(){
+
+        Timer scheduler = new Timer();
+
+        TimerTask tasknew = new TimerTask() {
+            @Override
+            public void run() {
+                themeSwap(themeIdx);
+            }
+        };
+
+        TimerTask stopper = new TimerTask() {
+            @Override
+            public void run() {
+                themeIdx = 0;
+                scheduler.cancel();
+            }
+        };
+
+        scheduler.schedule(tasknew,300,100);
+        scheduler.schedule(stopper,20000,200);
     }
 
     public static void main(String[] args) {

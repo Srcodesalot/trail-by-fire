@@ -24,6 +24,3 @@ if you roll higher than the enemy your dodge will be be successful and vice vers
 first off this is a great platform for any text base adventure game
 if you have an idea of a cool story you'd like to play through you can add it to the story class!
 if the plat form gets big enough we may have to make multiple story classes (like game cartridges)
-
-
-
