@@ -43,6 +43,7 @@ public class GUI extends Application {
 
         HBox themeButton = new HBox(800);
         themeButton.getChildren().addAll(spacer,themeSwitcher);
+
         //intro one
         Label titleNameLabel = new Label("Trial by Fire");
         titleNameLabel.fontProperty().setValue(Font.font(100));
@@ -95,9 +96,17 @@ public class GUI extends Application {
         nameLabel = new Label("Name: ");
         nameLabel.getStyleClass().add("label-upTop");
 
-        HBox playerPanel = new HBox(characterScreen.getWidth() / 2);
-        playerPanel.setAlignment(Pos.CENTER);
-        playerPanel.getChildren().addAll(hpLabel, nameLabel);
+        HBox hpName = new HBox(characterScreen.getWidth() / 2);
+        hpName.setAlignment(Pos.CENTER);
+        hpName.getChildren().addAll(hpLabel, nameLabel);
+
+        Button gThemeSwitcher = new Button("™");
+        gThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        gThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox playerPanel = new HBox(55);
+        playerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        playerPanel.getChildren().addAll(hpName, gThemeSwitcher);
 
         mainTextArea = new Label();
         mainTextArea.isWrapText();
@@ -109,7 +118,6 @@ public class GUI extends Application {
         Label paddingleft = new Label("");
         Label paddingRight = new Label("");
         padding.getChildren().addAll(paddingleft, mainTextArea, paddingRight);
-
 
         VBox mainLayout = new VBox(140);
         mainLayout.setAlignment(Pos.CENTER);
@@ -133,9 +141,17 @@ public class GUI extends Application {
         battleNameLabel = new Label("Name: ");
         battleNameLabel.getStyleClass().add("label-upTop");
 
-        HBox battlePlayerPanel = new HBox(characterScreen.getWidth() / 2);
-        battlePlayerPanel.setAlignment(Pos.CENTER);
-        battlePlayerPanel.getChildren().addAll(battleHpLabel, battleNameLabel);
+        HBox bHpName = new HBox(characterScreen.getWidth() / 2);
+        bHpName.setAlignment(Pos.CENTER);
+        bHpName.getChildren().addAll(battleHpLabel, battleNameLabel);
+
+        Button bThemeSwitcher = new Button("™");
+        bThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        bThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox battlePlayerPanel = new HBox(55);
+        battlePlayerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        battlePlayerPanel.getChildren().addAll(bHpName, bThemeSwitcher);
 
         battleTextArea = new Label();
         battleTextArea.isWrapText();
@@ -187,9 +203,17 @@ public class GUI extends Application {
         decisionNameLabel = new Label("Name: ");
         decisionNameLabel.getStyleClass().add("label-upTop");
 
-        HBox decisionPlayerPanel = new HBox(characterScreen.getWidth() / 2);
-        decisionPlayerPanel.setAlignment(Pos.CENTER);
-        decisionPlayerPanel.getChildren().addAll(decisionHpLabel, decisionNameLabel);
+        HBox dHpName = new HBox(characterScreen.getWidth() / 2);
+        dHpName.setAlignment(Pos.CENTER);
+        dHpName.getChildren().addAll(decisionHpLabel, decisionNameLabel);
+
+        Button dThemeSwitcher = new Button("™");
+        dThemeSwitcher.setOnAction(e -> themeSwap(themeIdx));
+        dThemeSwitcher.getStyleClass().add("theme-manager");
+
+        HBox decisionPlayerPanel = new HBox(55);
+        decisionPlayerPanel.setAlignment(Pos.BOTTOM_RIGHT);
+        decisionPlayerPanel.getChildren().addAll(dHpName, dThemeSwitcher);
 
         decisionTextArea = new Label();
         decisionTextArea.isWrapText();

@@ -9,7 +9,7 @@
    -fx-text-alignment: "CENTER";
 }
 .label-upTop{
-   -fx-font-size: 20;
+   -fx-font-size: 23;
    -fx-text-fill: #b3b6b7;
 }
 .button{
@@ -25,6 +25,6 @@
     -fx-text-inner-color: #3d7889;
 }
 .theme-manager{
-    -fx-text-fill: #000000;
+    -fx-text-fill: #b3b6b7;
     -fx-background-color: rgba(255, 255, 255, .0);
 }
