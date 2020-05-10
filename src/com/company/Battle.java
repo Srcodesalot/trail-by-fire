@@ -1,13 +1,10 @@
 package com.company;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Battle {
 
-    HashMap<Integer, String> choices = new HashMap();
+    private HashMap<Integer, String> choices = new HashMap();
     private Player player, enemy;
 
     public Battle(Player p1, Player en) {
@@ -20,7 +17,7 @@ public class Battle {
     }
 
     //this battle function will be run every time there is a battle
-    public String battle(int x) {
+    String battle(int x) {
         //1 = attack 2 = quick attack 3= dodge 4 = attack
         //using ints cause they will be less tedious than text
         String actions = "";
