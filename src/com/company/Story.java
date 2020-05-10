@@ -2,27 +2,23 @@ package com.company;
 
 public class Story {
     private Player player;
-    private String [] story;
-    private Player [] enemies;
+    private String[] story;
+    private Player[] enemies;
 
-    public Story(Player p1){
+    public Story(Player p1) {
         player = p1;
         setscript();
         setEnemies();
     }
 
-    public String getStory(int x){
-        return story[x];
-    }
+    public String getStory(int x) { return story[x]; }
 
-    public Player getEnemy(int x) {
-        return enemies[x];
-    }
+    public Player getEnemy(int x) { return enemies[x]; }
 
     //instantiate all enemies and enter them into enemies array.
     //To add an enemy simply create the enemy and assign attributes.
     //Then add the enemy into the array IN ORDER of when they appear in the story
-    private void setEnemies(){
+    private void setEnemies() {
 
         //instantiate the players may turn this into just a constructor thing however just stick woth this for now.
         Player racheal1 = new Player("Rachael", 1);
@@ -30,14 +26,14 @@ public class Story {
         racheal1.setStrength(2);
 
         //add player to array.
-        Player [] enemy ={racheal1};
+        Player[] enemy = {racheal1};
         enemies = enemy;
     }
 
 
-    private void setscript(){
-        String [] theScript = {
-                "Mom: “Good Morning "+ player.getName() + ", you slept in this morning! Rachael is waiting out in the field for your first fighting lesson.”",
+    private void setscript() {
+        String[] theScript = {
+                "Mom: “Good Morning " + player.getName() + ", you slept in this morning! Rachael is waiting out in the field for your first fighting lesson.”",
                 "You open your eyes and sit up in your bed. Mom is standing in the doorway holding a tiny sack.",
                 "Mom: “Take this snack just in case you are slow to learn. You better hurry before she comes looking for you!”",
                 "You walk out of the house down the lane to the field where Rachael is waiting for you.",
@@ -57,10 +53,10 @@ public class Story {
                 "Rachael: “Why don’t we call it for the afternoon and go berry picking to finish off the day?”",
                 "You have learned the basics of fighting from Rachael.\nLEVEL UP!",
                 "BERRY DECISION TREE",
-                "Rachael: “"+ player.getName() + ", why do we stay in our tiny village? The world is so much stronger and larger than what we see each day.”",
+                "Rachael: “" + player.getName() + ", why do we stay in our tiny village? The world is so much stronger and larger than what we see each day.”",
                 "Rachael: “I’m afraid that one day someone scary and powerful will come and destroy us if we do not leave soon. I need to become stronger and I want you to come with me.”",
                 "Rachael: “Listen to me, you would never come with me. You’re just a kid.”",
-                "Rachael: “I’ll see you later, "+ player.getName() + ".”",
+                "Rachael: “I’ll see you later, " + player.getName() + ".”",
                 "You walk back down the lane to your house. The aroma of Mom’s dinner pours from the house as you walk closer.",
                 "You eat dinner with Mom. You finish your dinner and prepare to enter a coma from the arduous day and full stomach.",
                 "The strong light from an early afternoon hits your eyes waking you up. You feel a panic that you have overslept and are keeping Rachael waiting.",

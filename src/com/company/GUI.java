@@ -22,18 +22,18 @@ import java.util.*;
 //you can also use a css file which would be cleaner for sure
 public class GUI extends Application {
 
-    Stage window;
-    Scene titleScreen, characterScreen, mainScreen, battleScreen, decisionScreen;
-    Label hpLabel, decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel, makingName;
-    Label mainTextArea, battleTextArea, decisionTextArea;
-    int storyTracker = 0, enemyTracker = 0, choiceTracker = 0, themeIdx = 1;
-    Player player;
-    Story story;
-    TextField playerNameInput;
-    Battle curBattle;
-    HBox choiceButtons;
-    VBox mainLayout, fullLayout;
-    Button continueButton;
+    private Stage window;
+    private Scene titleScreen, characterScreen, mainScreen, battleScreen, decisionScreen;
+    private Label hpLabel, decisionHpLabel, battleHpLabel, nameLabel, battleNameLabel, decisionNameLabel;
+    private Label mainTextArea, battleTextArea;
+    private int storyTracker = 0, enemyTracker = 0, choiceTracker = 0, themeIdx = 1;
+    private Player player;
+    private Story story;
+    private TextField playerNameInput;
+    private Battle curBattle;
+    private HBox choiceButtons;
+    private VBox mainLayout, fullLayout;
+    private Button continueButton;
 
     public void start(Stage primaryStage) throws Exception {
         String defaultTheme = "themes/dark-theme.css";
@@ -71,7 +71,7 @@ public class GUI extends Application {
         titleScreen.getStylesheets().add(defaultTheme);
 
         //TODO:Character builder: Style this screen
-        makingName = new Label("What do they call you?");
+        Label makingName = new Label("What do they call you?");
         makingName.setFont(Font.font(40));
 
         playerNameInput = new TextField();
@@ -222,7 +222,7 @@ public class GUI extends Application {
         decisionPlayerPanel.setAlignment(Pos.BOTTOM_RIGHT);
         decisionPlayerPanel.getChildren().addAll(dHpName, dThemeSwitcher);
 
-        decisionTextArea = new Label();
+        Label decisionTextArea = new Label();
         decisionTextArea.isWrapText();
         decisionTextArea.setText("What will you do?");
 
@@ -263,8 +263,7 @@ public class GUI extends Application {
     private void initBattle() {
         Player enemy = story.getEnemy(enemyTracker);
         enemy.Restore();
-        Battle battle = new Battle(player, enemy);
-        curBattle = battle;
+        curBattle = new Battle(player, enemy);
     }
 
     private void initDecision() {
@@ -288,7 +287,6 @@ public class GUI extends Application {
 
     private void progress() {
         String storyLine = story.getStory(storyTracker);
-        System.out.println(storyLine);
         storyTracker++;
         if (storyLine.contains("BATTLE")) {
             initBattle();
@@ -308,7 +306,7 @@ public class GUI extends Application {
         else if (storyLine.contains("END")) {
             //rebuild the main screen
             continueButton.setVisible(false);
-            mainTextArea.setText("Thats all for now! Thank you for playing and there will be more updates to come!\n");
+            mainTextArea.setText("That's all for now! Thank you for playing and there will be more updates to come!\n");
 
             Hyperlink gitLink = new Hyperlink("Github link: https://github.com/Srcodesalot/trail-by-fire");
             gitLink.getStyleClass().add("hyper-link");
@@ -317,20 +315,20 @@ public class GUI extends Application {
             mainLayout.getChildren().add(gitLink);
 
             fullLayout.setSpacing(90);
-        }else{
-            mainTextArea.setText(storyLine);
         }
+        mainTextArea.setText(storyLine);
     }
 
     //User Actions
     private void battleAction(int x) {
         String result = curBattle.battle(x);
-        if (result == "PASS") {
+        if (result.equals("PASS")) {
+            enemyTracker++;
             mainTextArea.setText("Victory!");
             updatePlayerPanel();
             window.setScene(mainScreen);
         }
-        if (result == "FAIL") {
+        if (result.equals("FAIL")) {
             mainTextArea.setText("You Lost.");
             //restore in retry screen
             player.Restore();
@@ -390,11 +388,11 @@ public class GUI extends Application {
         }
     }
 
-    public void rapidTheme(){
+    private void rapidTheme(){
 
         Timer scheduler = new Timer();
 
-        TimerTask tasknew = new TimerTask() {
+        TimerTask newTask = new TimerTask() {
             @Override
             public void run() {
                 themeSwap(themeIdx);
@@ -409,7 +407,7 @@ public class GUI extends Application {
             }
         };
 
-        scheduler.schedule(tasknew,300,100);
+        scheduler.schedule(newTask,300,100);
         scheduler.schedule(stopper,20000,200);
     }
 
