@@ -25,7 +25,7 @@ public class Story {
     private void setEnemies(){
 
         //instantiate the players may turn this into just a constructor thing however just stick woth this for now.
-        Player racheal1 = new Player("Rachael", 0);
+        Player racheal1 = new Player("Rachael", 1);
         racheal1.setSpeed(3);
         racheal1.setStrength(2);
 

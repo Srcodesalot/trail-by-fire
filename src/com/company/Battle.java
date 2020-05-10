@@ -1,6 +1,7 @@
 package com.company;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -186,11 +187,10 @@ public class Battle {
                 + player.getName() + " HP: " + playerHp + "\t"
                 + enemy.getName() + " HP: " + enemyHp + "\n";
 
-        System.out.println(actions);
         player.setHp(playerHp);
         enemy.setHp(enemyHp);
-        if (playerHp < 0) return "FAIL";
-        else if (enemyHp < 0) return "PASS";
+        if (playerHp <= 0) return "FAIL";
+        else if (enemyHp <= 0) return "PASS";
         else return actions;
     }
 }

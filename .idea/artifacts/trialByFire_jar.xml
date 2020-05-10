@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="trialByFire:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/trialByFire_jar</output-path>
+    <root id="archive" name="trialByFire.jar">
+      <element id="module-output" name="trialByFire" />
+    </root>
+  </artifact>
+</component>
