@@ -70,7 +70,8 @@ public class Story {
                 "You head back to your house. Maybe she went to teach you a lesson.",
                 "When you arrive back home you notice a silence has befallen the village. No one is out.",
                 "Where are you Mom?",
-                "Rachael?"
+                "Rachael?",
+                "END"
         };
         story = theScript;
     }

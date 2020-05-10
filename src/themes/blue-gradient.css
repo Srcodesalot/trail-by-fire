@@ -28,3 +28,7 @@
     -fx-text-fill: #eaf2f8;
     -fx-background-color: rgba(255, 255, 255, .0);
 }
+.hyper-link{
+   -fx-font-size: 20;
+   -fx-text-fill: #eaf2f8;
+}

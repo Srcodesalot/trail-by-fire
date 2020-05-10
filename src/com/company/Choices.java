@@ -12,7 +12,7 @@ public class Choices {
     private void setChoices(){
         // to add choices follow the below format
         //each choice should be named choiceX with x being an incrementing integer
-        String [] choice0 = {" Look for berrys by the stream."," Look for berries by in the forest "," Go home and rest"};
+        String [] choice0 = {" Look for berries by the stream."," Look for berries by in the forest "," Go home and rest"};
         choices.put("choice0",choice0);
     }
 
@@ -39,9 +39,9 @@ public class Choices {
             case 0:
                 return "You see a few fish and bushes, but no berries";
             case 1:
-                return "Congradulations You found the berries\n LEVEL UP! ";
+                return "Congratulations You found the berries\n LEVEL UP! ";
             case 2:
-                return "Youre right, lets just head back!";
+                return "You're right, lets just head back!";
         }
         return null;
     }
