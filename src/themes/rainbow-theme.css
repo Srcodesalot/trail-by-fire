@@ -1,0 +1,30 @@
+//going for rainbow theme
+.root{
+   -fx-background-color: linear-gradient(#ff0000, #800080);
+}
+.label{
+   -fx-font-size: 30;
+   -fx-text-fill: #ffff00;
+   -fx-wrap-text: "true";
+   -fx-text-alignment: "CENTER";
+}
+.label-upTop{
+   -fx-font-size: 23;
+   -fx-text-fill: #ff8000;
+}
+.button{
+    -fx-font-size: 20;
+    -fx-text-fill: #00aa00;
+    -fx-background-color: #0000d4;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #ff8000;
+}
+.theme-manager{
+    -fx-text-fill: #ff8000;
+    -fx-background-color: rgba(255, 255, 255, .0);
+}
