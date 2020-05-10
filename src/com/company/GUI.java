@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Hyperlink;
 import java.util.Timer;
 import java.util.*;
 
@@ -31,6 +32,8 @@ public class GUI extends Application {
     TextField playerNameInput;
     Battle curBattle;
     HBox choiceButtons;
+    VBox mainLayout, fullLayout;
+    Button continueButton;
 
     public void start(Stage primaryStage) throws Exception {
         String defaultTheme = "themes/dark-theme.css";
@@ -123,15 +126,15 @@ public class GUI extends Application {
         Label paddingRight = new Label("");
         padding.getChildren().addAll(paddingleft, mainTextArea, paddingRight);
 
-        VBox mainLayout = new VBox(140);
+        mainLayout = new VBox(140);
         mainLayout.setAlignment(Pos.CENTER);
         mainLayout.getChildren().addAll(playerPanel, padding);
 
-        Button continueButton = new Button("Continue");
+        continueButton = new Button("Continue");
         continueButton.setOnAction(e -> progress());
         continueButton.setAlignment(Pos.CENTER_RIGHT);
 
-        VBox fullLayout = new VBox(110);
+        fullLayout = new VBox(110);
         fullLayout.setAlignment(Pos.TOP_CENTER);
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
@@ -292,17 +295,31 @@ public class GUI extends Application {
             battleTextArea.setText("Quick, the battle has begun, Whats your move?! ");
             window.setScene(battleScreen);
         }
-        if (storyLine.contains("DECISION TREE")) {
+        else if (storyLine.contains("DECISION TREE")) {
             initDecision();
             window.setScene(decisionScreen);
             mainTextArea.setText("SEARCH!!!!");
         }
-        if (storyLine.contains("LEVEL UP!")) {
+        else if (storyLine.contains("LEVEL UP!")) {
             player.levelUp();
             player.Restore();
             updatePlayerPanel();
         }
-        mainTextArea.setText(storyLine);
+        else if (storyLine.contains("END")) {
+            //rebuild the main screen
+            continueButton.setVisible(false);
+            mainTextArea.setText("Thats all for now! Thank you for playing and there will be more updates to come!\n");
+
+            Hyperlink gitLink = new Hyperlink("Github link: https://github.com/Srcodesalot/trail-by-fire");
+            gitLink.getStyleClass().add("hyper-link");
+            gitLink.setOnAction(e-> getHostServices().showDocument("https://github.com/Srcodesalot/trail-by-fire"));
+
+            mainLayout.getChildren().add(gitLink);
+
+            fullLayout.setSpacing(90);
+        }else{
+            mainTextArea.setText(storyLine);
+        }
     }
 
     //User Actions

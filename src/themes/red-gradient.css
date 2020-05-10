@@ -14,7 +14,7 @@
 }
 .button{
     -fx-font-size: 20;
-    -fx-text-fill: #01181e;
+    -fx-text-fill: #d2513f;
     -fx-background-color: #17202a;
 }
 .label-title{
@@ -27,4 +27,8 @@
 .theme-manager{
     -fx-text-fill: #e6b0aa;
     -fx-background-color: rgba(255, 255, 255, .0);
+}
+.hyper-link{
+   -fx-font-size: 20;
+   -fx-text-fill: #e6b0aa;
 }
