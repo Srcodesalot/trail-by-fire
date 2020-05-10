@@ -3,17 +3,28 @@
     -fx-background-color: linear-gradient(#01181e, #003C4B);
 }
 .label{
-    -fx-font-size: 35;
-    -fx-text-fill: #d2513f;
-    -fx-wrap-text: "true";
-    -fx-text-alignment: "CENTER";
+   -fx-font-size: 30;
+   -fx-text-fill: #d2513f;
+   -fx-wrap-text: "true";
+   -fx-text-alignment: "CENTER";
 }
 .label-upTop{
-    -fx-font-size: 20;
-    -fx-text-fill: #eaf2f8;
+   -fx-font-size: 20;
+   -fx-text-fill: #eaf2f8;
 }
 .button{
-     -fx-font-size: 20;
-     -fx-text-fill: #a9cce3;
-     -fx-background-color: #641e16;
+    -fx-font-size: 20;
+    -fx-text-fill: #a9cce3;
+    -fx-background-color: #641e16;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #3d7889;
+}
+.theme-manager{
+    -fx-text-fill: #d2513f;
+    -fx-background-color: rgba(255, 255, 255, .0);
 }

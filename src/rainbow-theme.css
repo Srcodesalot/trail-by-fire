@@ -3,7 +3,7 @@
     -fx-background-color: linear-gradient(#ff0000, #800080);
 }
 .label{
-    -fx-font-size: 35;
+    -fx-font-size: 30;
     -fx-text-fill: #ffff00;
     -fx-wrap-text: "true";
     -fx-text-alignment: "CENTER";
@@ -16,4 +16,15 @@
      -fx-font-size: 20;
      -fx-text-fill: #00aa00;
      -fx-background-color: #0000d4;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #3d7889;
+}
+.theme-manager{
+    -fx-text-fill: #ffff00;
+    -fx-background-color: rgba(255, 255, 255, .0);
 }

@@ -1,19 +1,30 @@
 //fade red to black background
 .root{
-    -fx-background-color: linear-gradient(#01181e, #d2513f);
+   -fx-background-color: linear-gradient(#01181e, #d2513f);
 }
 .label{
-    -fx-font-size: 35;
-    -fx-text-fill: #d2513f;
-    -fx-wrap-text: "true";
-    -fx-text-alignment: "CENTER";
+   -fx-font-size: 30;
+   -fx-text-fill: #d2513f;
+   -fx-wrap-text: "true";
+   -fx-text-alignment: "CENTER";
 }
 .label-upTop{
-    -fx-font-size: 20;
-    -fx-text-fill: #e6b0aa;
+   -fx-font-size: 20;
+   -fx-text-fill: #e6b0aa;
 }
 .button{
-     -fx-font-size: 20;
-     -fx-text-fill: #01181e;
-     -fx-background-color: #17202a;
+    -fx-font-size: 20;
+    -fx-text-fill: #01181e;
+    -fx-background-color: #17202a;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #3d7889;
+}
+.theme-manager{
+    -fx-text-fill: #d2513f;
+    -fx-background-color: rgba(255, 255, 255, .0);
 }

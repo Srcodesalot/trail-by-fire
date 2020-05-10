@@ -1,19 +1,30 @@
 //bright theme
 .root{
-    -fx-background-color: #CC00FF;
+   -fx-background-color: #CC00FF;
 }
 .label{
-    -fx-font-size: 35;
-    -fx-text-fill: #66ff00;
-    -fx-wrap-text: "true";
-    -fx-text-alignment: "CENTER";
+   -fx-font-size: 30;
+   -fx-text-fill: #66ff00;
+   -fx-wrap-text: "true";
+   -fx-text-alignment: "CENTER";
 }
 .label-upTop{
-    -fx-font-size: 20;
-    -fx-text-fill: #CCFF00;
+   -fx-font-size: 20;
+   -fx-text-fill: #CCFF00;
 }
 .button{
-     -fx-font-size: 20;
-     -fx-text-fill: #CC00FF;
-     -fx-background-color: #00ffcc;
+    -fx-font-size: 20;
+    -fx-text-fill: #CC00FF;
+    -fx-background-color: #00ffcc;
+}
+.label-title{
+    -fx-font-size: 50;
+}
+.text-field{
+    -fx-background-color:rgba(255, 255, 255, .0);
+    -fx-text-inner-color: #3d7889;
+}
+.theme-manager{
+    -fx-text-fill: #66ff00;
+    -fx-background-color: rgba(255, 255, 255, .0);
 }
