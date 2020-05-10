@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import java.util.Timer;
+import java.util.*;
 
 //NOW FUNCTIONING AS MAIN CLASS
 //Cool color scheme we may want https://www.fabmood.com/inspiration/emerald-teal-and-terracotta-color-scheme/
@@ -31,6 +33,8 @@ public class GUI extends Application {
     HBox choiceButtons;
 
     public void start(Stage primaryStage) throws Exception {
+        String defaultTheme = "themes/dark-theme.css";
+
         //TODO:initial window: Style this screen
         window = primaryStage;
         window.setTitle("Trial by Fire");
@@ -61,7 +65,7 @@ public class GUI extends Application {
         titleLayout.getChildren().addAll(themeButton, mainComponent);
 
         titleScreen = new Scene(titleLayout, 900, 600);
-        titleScreen.getStylesheets().add("dark-theme.css");
+        titleScreen.getStylesheets().add(defaultTheme);
 
         //TODO:Character builder: Style this screen
         makingName = new Label("What do they call you?");
@@ -87,7 +91,7 @@ public class GUI extends Application {
         characterLayout.getChildren().addAll(makingName, playerNameInput);
 
         characterScreen = new Scene(characterLayout, 900, 600);
-        characterScreen.getStylesheets().add("dark-theme.css");
+        characterScreen.getStylesheets().add(defaultTheme);
 
         //TODO:GAME SCREEN: Style this screen
         hpLabel = new Label("HP: ");
@@ -132,7 +136,7 @@ public class GUI extends Application {
         fullLayout.getChildren().addAll(mainLayout, continueButton);
 
         mainScreen = new Scene(fullLayout, 900, 600);
-        mainScreen.getStylesheets().add("dark-theme.css");
+        mainScreen.getStylesheets().add(defaultTheme);
 
         //TODO:BATTLE SCREEN: Style this screen
         battleHpLabel = new Label("HP: ");
@@ -194,7 +198,7 @@ public class GUI extends Application {
         battleLayout.getChildren().addAll(battleMainLayout, battleButtons);
 
         battleScreen = new Scene(battleLayout, 900, 600);
-        battleScreen.getStylesheets().add("dark-theme.css");
+        battleScreen.getStylesheets().add(defaultTheme);
 
         //TODO: DESICION SCREEN: Style this screen
         decisionHpLabel = new Label("HP: ");
@@ -233,7 +237,7 @@ public class GUI extends Application {
         decisionLayout.getChildren().addAll(decisionMainLayout, choiceButtons);
 
         decisionScreen = new Scene(decisionLayout, 900, 600);
-        decisionScreen.getStylesheets().add("dark-theme.css");
+        decisionScreen.getStylesheets().add(defaultTheme);
 
         window.setScene(titleScreen);
         window.show();
@@ -348,7 +352,7 @@ public class GUI extends Application {
                 "super-bright-theme.css"
         };
 
-        String theme = themes[x%themes.length];
+        String theme = "themes/" + themes[x % themes.length];
 
         //clear
         titleScreen.getStylesheets().clear();
@@ -363,6 +367,33 @@ public class GUI extends Application {
         mainScreen.getStylesheets().add(theme);
         battleScreen.getStylesheets().add(theme);
         decisionScreen.getStylesheets().add(theme);
+
+        if(x == themes.length*4){
+            rapidTheme();
+        }
+    }
+
+    public void rapidTheme(){
+
+        Timer scheduler = new Timer();
+
+        TimerTask tasknew = new TimerTask() {
+            @Override
+            public void run() {
+                themeSwap(themeIdx);
+            }
+        };
+
+        TimerTask stopper = new TimerTask() {
+            @Override
+            public void run() {
+                themeIdx = 0;
+                scheduler.cancel();
+            }
+        };
+
+        scheduler.schedule(tasknew,300,100);
+        scheduler.schedule(stopper,20000,200);
     }
 
     public static void main(String[] args) {

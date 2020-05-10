@@ -15,14 +15,14 @@
 .button{
     -fx-font-size: 20;
     -fx-text-fill: #CC00FF;
-    -fx-background-color: #00ffcc;
+    -fx-background-color: #66ff00;
 }
 .label-title{
     -fx-font-size: 50;
 }
 .text-field{
     -fx-background-color:rgba(255, 255, 255, .0);
-    -fx-text-inner-color: #3d7889;
+    -fx-text-inner-color: #d7bde2;
 }
 .theme-manager{
     -fx-text-fill: #CCFF00;

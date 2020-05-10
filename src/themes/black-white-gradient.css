@@ -22,7 +22,7 @@
 }
 .text-field{
     -fx-background-color:rgba(255, 255, 255, .0);
-    -fx-text-inner-color: #3d7889;
+    -fx-text-inner-color: #b3b6b7;
 }
 .theme-manager{
     -fx-text-fill: #b3b6b7;

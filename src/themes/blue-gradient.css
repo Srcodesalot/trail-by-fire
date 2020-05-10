@@ -1,6 +1,6 @@
-//fade red to black background
+//gradient blue background
 .root{
-   -fx-background-color: linear-gradient(#01181e, #d2513f);
+    -fx-background-color: linear-gradient(#01181e, #003C4B);
 }
 .label{
    -fx-font-size: 30;
@@ -10,21 +10,21 @@
 }
 .label-upTop{
    -fx-font-size: 23;
-   -fx-text-fill: #e6b0aa;
+   -fx-text-fill: #eaf2f8;
 }
 .button{
     -fx-font-size: 20;
-    -fx-text-fill: #01181e;
-    -fx-background-color: #17202a;
+    -fx-text-fill: #a9cce3;
+    -fx-background-color: #641e16;
 }
 .label-title{
     -fx-font-size: 50;
 }
 .text-field{
     -fx-background-color:rgba(255, 255, 255, .0);
-    -fx-text-inner-color: #3d7889;
+    -fx-text-inner-color: #eaf2f8;
 }
 .theme-manager{
-    -fx-text-fill: #e6b0aa;
+    -fx-text-fill: #eaf2f8;
     -fx-background-color: rgba(255, 255, 255, .0);
 }
