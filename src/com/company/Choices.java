@@ -1,11 +1,10 @@
 package com.company;
 import java.util.HashMap;
 
-public class Choices {
-
+class Choices {
     private HashMap<String,String[]> choices = new HashMap();
 
-    public Choices(){
+    Choices(){
         setChoices();
     }
 
@@ -16,11 +15,11 @@ public class Choices {
         choices.put("choice0",choice0);
     }
 
-    public String [] getChoices(String choice){
+    String [] getChoices(String choice){
         return choices.get(choice);
     }
 
-    public String Results(int choiceSet, int selected){
+    String Results(int choiceSet, int selected){
         //place holder cases for testing please change
         switch (choiceSet) {
             case 0:
@@ -33,7 +32,7 @@ public class Choices {
         return null;
     }
 
-    public String choice0(int selected){
+    private String choice0(int selected){
         //place holder cases for testing please change
         switch (selected) {
             case 0:
@@ -46,7 +45,7 @@ public class Choices {
         return null;
     }
 
-    public String choice1(int x){
+    private String choice1(int x){
         //place holder cases for testing please change
         switch (x) {
             case 0:
@@ -59,7 +58,7 @@ public class Choices {
         return null;
     }
 
-    public String choice2(int x){
+    private String choice2(int x){
         //place holder cases for testing please change
         switch (x) {
             case 0:

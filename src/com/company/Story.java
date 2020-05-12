@@ -2,27 +2,23 @@ package com.company;
 
 public class Story {
     private Player player;
-    private String [] story;
-    private Player [] enemies;
+    private String[] story;
+    private Player[] enemies;
 
-    public Story(Player p1){
+    public Story(Player p1) {
         player = p1;
         setscript();
         setEnemies();
     }
 
-    public String getStory(int x){
-        return story[x];
-    }
+    public String getStory(int x) { return story[x]; }
 
-    public Player getEnemy(int x) {
-        return enemies[x];
-    }
+    public Player getEnemy(int x) { return enemies[x]; }
 
     //instantiate all enemies and enter them into enemies array.
     //To add an enemy simply create the enemy and assign attributes.
     //Then add the enemy into the array IN ORDER of when they appear in the story
-    private void setEnemies(){
+    private void setEnemies() {
 
         //instantiate the players may turn this into just a constructor thing however just stick woth this for now.
         Player racheal1 = new Player("Rachel", 1);
@@ -30,9 +26,10 @@ public class Story {
         racheal1.setStrength(2);
 
         //add player to array.
-        Player [] enemy ={racheal1};
+        Player[] enemy = {racheal1};
         enemies = enemy;
     }
+
 
 
     private void setscript(){
@@ -124,9 +121,7 @@ public class Story {
                 "Its eyes stare up at you, reading your thoughts.",
                 "A twig cracks off the trail which causes you to turn your head. \nAt that second, the Wolf darts back into the darkness.",
                 "LEVEL UP!",
-
-
-
+                "END"
         };
         story = theScript;
     }
