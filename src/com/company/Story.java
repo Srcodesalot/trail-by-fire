@@ -25,8 +25,21 @@ public class Story {
         racheal1.setSpeed(3);
         racheal1.setStrength(2);
 
+        Player boar = new Player("the Boar", 3);
+        boar.setSpeed(3);
+        boar.setStrength(2);
+
+        Player goblin = new Player("the Goblin", 4);
+        goblin.setSpeed(3);
+        goblin.setStrength(2);
+
+        Player wolf = new Player("the Wolf", 6);
+        goblin.setSpeed(3);
+        goblin.setStrength(2);
+
+
         //add player to array.
-        Player[] enemy = {racheal1};
+        Player[] enemy = {racheal1, boar, goblin, wolf};
         enemies = enemy;
     }
 
