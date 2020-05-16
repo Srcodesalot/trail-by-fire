@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 //**
@@ -10,7 +11,7 @@ import java.util.Random;
 //**
 
 public class Player {
-    private int level, speed, strength, maxHp, curHp, hitRange;
+    private int level, speed, strength, maxHp, curHp, hitRange, prevAttack =0;
     private String name;
 
     public Player(String nme, int lev) {
@@ -92,9 +93,92 @@ public class Player {
     }
 
     //npc gen
+    //logic may be better as a separate initial function
     public int choose() {
+        //1 = attack 2 = quick attack 3= dodge 4 = block
+        int weakAttack = speed < strength ? 2 :1;
+        int strongAttack = weakAttack == 1 ? 2 :1;
+        int weakBlock = speed < strength ? 3 :4;
+        int strongBlock = weakBlock == 3 ? 4 : 3;
+        ArrayList <Integer> moves = new ArrayList<>();
         Random gen = new Random();
-        int choice = gen.nextInt(4);
-        return choice + 1;
+        System.out.println(" WeakA: " + weakAttack + " StrongA: " + strongAttack +  " WeakB: " + weakBlock + " StrongB: " + strongBlock);
+
+        int choice;
+
+        if(level == 1){
+            if(prevAttack == weakBlock){
+                prevAttack = strongAttack;
+                return strongAttack;
+            }
+            else if(prevAttack == strongAttack){
+                prevAttack = strongBlock;
+                return strongBlock;
+            }
+            else if(prevAttack == strongBlock){
+                prevAttack = weakAttack;
+                return weakAttack;
+            }
+             else if (prevAttack == weakAttack){
+                prevAttack = weakBlock;
+                return weakBlock;
+            }
+            else{
+                moves.add(weakAttack);
+                moves.add(weakBlock);
+                moves.add(strongAttack);
+                moves.add(strongBlock);
+            }
+        }
+        else if(level <= 5){
+            if(prevAttack == weakAttack){
+                prevAttack = weakBlock;
+                return weakBlock;
+            }
+            if(prevAttack == strongBlock){
+                prevAttack = strongAttack;
+                return strongAttack;
+            }
+            moves.add(weakBlock);
+            for (int i = 0; i <= level%5; i++) {
+                moves.add(weakAttack);
+                moves.add(weakBlock);
+                moves.add(strongAttack);
+                moves.add(strongBlock);
+            }
+        }
+        else if (5 < level && level <= 10){
+
+            if(prevAttack == weakAttack){
+                prevAttack = weakBlock;
+                return weakBlock;
+            }
+            moves.add(weakBlock);
+            for (int i = 0; i <= level%5; i++) {
+                moves.add(weakAttack);
+                moves.add(weakBlock);
+                moves.add(strongAttack);
+                moves.add(strongBlock);
+            }
+
+        } else{
+            if(prevAttack == strongAttack){
+                prevAttack = strongBlock;
+                return strongBlock;
+            }
+            moves.add(weakBlock);
+            for (int i = 0; i <= level%5; i++) {
+                moves.add(weakAttack);
+                moves.add(weakBlock);
+                moves.add(strongAttack);
+                moves.add(strongBlock);
+            }
+
+        }
+
+        choice = gen.nextInt(moves.size());
+        int move = moves.get(choice);
+        prevAttack = move;
+        return move;
     }
 }

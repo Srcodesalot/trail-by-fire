@@ -22,8 +22,8 @@ public class Story {
 
         //instantiate the players may turn this into just a constructor thing however just stick woth this for now.
         Player racheal1 = new Player("Rachel", 1);
-        racheal1.setSpeed(3);
-        racheal1.setStrength(2);
+        racheal1.setSpeed(2);
+        racheal1.setStrength(1);
 
         Player boar = new Player("the Boar", 3);
         boar.setSpeed(3);
